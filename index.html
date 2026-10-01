@@ -46,6 +46,19 @@
         .btn-menu { background-color: #ff99cc; }
         .btn-menu:hover { background-color: #ff66b2; transform: scale(1.05); }
 
+        /* Butang Kembali (Home) */
+        #home-btn {
+            display: none; /* Disembunyikan pada asalnya */
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background-color: #ffb366;
+            padding: 12px 20px;
+            font-size: 20px;
+        }
+        #home-btn:hover { background-color: #ff9933; }
+
         #gameArea {
             display: none;
             width: 100vw;
@@ -153,6 +166,8 @@
 </head>
 <body>
 
+    <button id="home-btn" class="btn" onclick="goHome()">🏠 Tamat / Kembali</button>
+
     <div id="menu">
         <h1>🌟 Jom Surih! Dunia Huruf 🌟</h1>
         <p>Pilih jumlah pemain untuk bermula:</p>
@@ -173,6 +188,7 @@
 
         function startGame(playerCount) {
             document.getElementById('menu').style.display = 'none';
+            document.getElementById('home-btn').style.display = 'block'; // Paparkan butang kembali
             const gameArea = document.getElementById('gameArea');
             gameArea.style.display = 'flex';
             gameArea.innerHTML = '';
@@ -199,6 +215,14 @@
                     initCanvas(`canvas-${i}`);
                 }
             }, 100);
+        }
+
+        // Fungsi untuk kembali ke menu utama
+        function goHome() {
+            document.getElementById('gameArea').style.display = 'none';
+            document.getElementById('gameArea').innerHTML = ''; // Kosongkan pemain semasa
+            document.getElementById('menu').style.display = 'inline-block';
+            document.getElementById('home-btn').style.display = 'none'; // Sembunyikan semula butang
         }
 
         // Fungsi apabila butang Siap ditekan
